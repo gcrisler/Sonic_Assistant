@@ -122,7 +122,7 @@ int main(void)
     // verifying HSPLL Frequency
     disableApplicationInterrupts();
 
-    code = USS_verifyHSPLLFrequency(&gUssSWConfig, &testResults);
+   //code = USS_verifyHSPLLFrequency(&gUssSWConfig, &testResults);
 
     // Application can re-enable interrupts after HSPLL verification
     enableApplicationInterrupts();

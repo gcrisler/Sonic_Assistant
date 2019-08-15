@@ -8,8 +8,8 @@
 #ifndef LCD_DISPLAY_H_
 #define LCD_DISPLAY_H_
 
-
-display_top_row(unsigned int value);
+void    lcd_init();
+void    display_top_row(unsigned int value);
 
 
 #endif /* LCD_DISPLAY_H_ */
