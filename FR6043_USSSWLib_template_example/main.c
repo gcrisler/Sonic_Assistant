@@ -122,7 +122,6 @@ int main(void)
     // verifying HSPLL Frequency
     disableApplicationInterrupts();
 
-    //code = USS_verifyHSPLLFrequency(&gUssSWConfig, &testResults);
 
     // Application can re-enable interrupts after HSPLL verification
     enableApplicationInterrupts();
@@ -155,6 +154,8 @@ int main(void)
 
 #endif
 
+
+    initLcd();
 
     while(1)
     {
