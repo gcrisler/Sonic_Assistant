@@ -25,7 +25,6 @@
 #include <stdint.h>
 #include "msp430.h"
 
-#ifdef __TI_COMPILER_VERSION__
 int _system_pre_init(void)
 
 {

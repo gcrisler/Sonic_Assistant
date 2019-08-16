@@ -122,15 +122,15 @@ int main(void)
     // verifying HSPLL Frequency
     disableApplicationInterrupts();
 
-    code = USS_verifyHSPLLFrequency(&gUssSWConfig, &testResults);
+    //code = USS_verifyHSPLLFrequency(&gUssSWConfig, &testResults);
 
     // Application can re-enable interrupts after HSPLL verification
     enableApplicationInterrupts();
 
     checkCode(code, USS_message_code_no_error);
 
-    gUssSWConfig.algorithmsConfig->clockRelativeError = _IQ27div((int32_t)(testResults.actualTestCount -
-            testResults.expectedResult),testResults.expectedResult);
+   // gUssSWConfig.algorithmsConfig->clockRelativeError = _IQ27div((int32_t)(testResults.actualTestCount -
+        //    testResults.expectedResult),testResults.expectedResult);
 
     code = USS_initAlgorithms(&gUssSWConfig);
     checkCode(code, USS_message_code_no_error);
@@ -159,12 +159,12 @@ int main(void)
     while(1)
     {
 
-        code = USS_startLowPowerUltrasonicCapture(&gUssSWConfig);
-        checkCode(code, USS_message_code_no_error);
+      // code = USS_startLowPowerUltrasonicCapture(&gUssSWConfig);
+      //  checkCode(code, USS_message_code_no_error);
 
 
-        code = USS_runAlgorithms(&gUssSWConfig,&algResults);
-        checkCode(code, USS_message_code_valid_results);
+       // code = USS_runAlgorithms(&gUssSWConfig,&algResults);
+        //checkCode(code, USS_message_code_valid_results);
 
 
 
