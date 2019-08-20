@@ -2,7 +2,7 @@
 #include <msp430.h>
 #include "ussSwLib.h"
 #include "USS_Config/USS_userConfig.h"
-
+#include <lcd_display.h>
 
 
 /*******************************************************************************
@@ -155,7 +155,10 @@ int main(void)
 #endif
 
 
-    initLcd();
+    LcdInit();
+    LcdDisplayTopRow(5687);
+    LcdDisplayMiddleRow(78);
+    LcdDisplayBottomRow(23456789);
 
     while(1)
     {
