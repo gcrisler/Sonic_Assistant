@@ -92,7 +92,7 @@
 
 #include "USS_userConfig.h"
 
-#define USS_VFR_METER_CALIB_RANGES      3
+#define USS_VFR_METER_CALIB_RANGES      1
 
 #define USS_VFR_METER_CALIB_MAX_VFR     10000
 
@@ -102,16 +102,6 @@
         .alphaMin = (20.000f / USS_VOLUME_SCALE_FACTOR),             \
         .slope = 9.8283e-1f,                                         \
         .offset = -4.9292e0f,                                        \
-    },                                                               \
-    {                                                                \
-        .alphaMin = (220.000f / USS_VOLUME_SCALE_FACTOR),            \
-        .slope = 9.9935e-1f,                                         \
-        .offset = -1.2485e1f,                                        \
-    },                                                               \
-    {                                                                \
-        .alphaMin = (1250.000f / USS_VOLUME_SCALE_FACTOR),           \
-        .slope = 1.018e0f,                                           \
-        .offset = -5.3284e1f,                                        \
     },                                                               \
 }
 

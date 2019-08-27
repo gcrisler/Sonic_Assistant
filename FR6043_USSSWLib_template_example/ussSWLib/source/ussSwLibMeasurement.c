@@ -17,7 +17,7 @@
 #include "common/ussSwLibCommonTimer.h"
 #include "common/USSGenericRegDef.h"
 #include "USS_Lib_HAL.h"
-#include "USS_Config/USS_userConfig.h"
+#include "USS_userConfig.h"
 
 #define USS_LOW_POWER_DELAY_MAX_RERTY		3
 

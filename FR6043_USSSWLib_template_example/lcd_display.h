@@ -5,8 +5,8 @@
  *      Author: gcrisler
  */
 
-#ifndef LCD_DISPLAY_H_
-#define LCD_DISPLAY_H_
+#ifndef LCD_DISPLAY_H
+#define LCD_DISPLAY_H
 
 
 void    LcdInit(void);

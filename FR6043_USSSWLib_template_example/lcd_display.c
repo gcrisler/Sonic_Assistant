@@ -6,9 +6,9 @@
  */
 #include <msp430.h>
 #include "ussSwLib.h"
-#include "USS_Config/USS_userConfig.h"
-
 #include "driverlib.h"
+//#include "USS_Config/USS_userConfig.h"
+
 #include "lcd_display.h"
 
 const char top_row[10]={
@@ -59,7 +59,7 @@ const char middle_row[10]={
               LCD_C_V5_VSS);
 
          // Set VLCD voltage to 2.60v
-         LCD_C_setVLCDVoltage(LCD_C_BASE, LCD_C_CHARGEPUMP_VOLTAGE_3_02V_OR_2_52VREF);
+         LCD_C_setVLCDVoltage(LCD_C_BASE, LCD_C_CHARGEPUMP_VOLTAGE_2_90V_OR_2_42VREF);
 
          // Enable charge pump and select internal reference for it
          LCD_C_enableChargePump(LCD_C_BASE);
@@ -166,6 +166,7 @@ extern char* itoa(int value, char* result)
             for(i = 0; i < 21; i++)
                 {
                     LCD_C_setMemory(LCD_C_BASE, i, 0xd6);
-                    USS_generateLPMDelay(&gUssSWConfig, USS_low_power_mode_option_low_power_mode_3, 15000);
+//                    USS_generateLPMDelay(&gUssSWConfig, USS_low_power_mode_option_low_power_mode_3, 15000);
                 }
         }
+

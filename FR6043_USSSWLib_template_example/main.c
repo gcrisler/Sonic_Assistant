@@ -1,8 +1,8 @@
 
 #include <msp430.h>
 #include "ussSwLib.h"
-#include "USS_Config/USS_userConfig.h"
-#include <lcd_display.h>
+#include "USS_userConfig.h"
+#include "lcd_display.h"
 
 
 /*******************************************************************************
@@ -73,9 +73,10 @@ int main(void)
 #endif
 
     volatile USS_message_code code;
-    USS_Algorithms_Results algResults;
+    USS_Algorithms_Results_fixed_point algResultsFixedPoint;
+    //USS_Algorithms_Results algResults;
     USS_calibration_hspll_results testResults;
-
+    LcdInit();
 
     // Register PLL unlock event
     USS_registerHSPLLInterruptCallback(USS_HSPLL_Interrupt_PLLUNLOCK,
@@ -122,14 +123,15 @@ int main(void)
     // verifying HSPLL Frequency
     disableApplicationInterrupts();
 
+    code = USS_verifyHSPLLFrequency(&gUssSWConfig, &testResults);
 
     // Application can re-enable interrupts after HSPLL verification
     enableApplicationInterrupts();
 
     checkCode(code, USS_message_code_no_error);
 
-   // gUssSWConfig.algorithmsConfig->clockRelativeError = _IQ27div((int32_t)(testResults.actualTestCount -
-        //    testResults.expectedResult),testResults.expectedResult);
+   gUssSWConfig.algorithmsConfig->clockRelativeError = _IQ27div((int32_t)(testResults.actualTestCount -
+   testResults.expectedResult),testResults.expectedResult);
 
     code = USS_initAlgorithms(&gUssSWConfig);
     checkCode(code, USS_message_code_no_error);
@@ -155,20 +157,22 @@ int main(void)
 #endif
 
 
-    LcdInit();
-    LcdDisplayTopRow(5687);
+
+
     LcdDisplayMiddleRow(78);
-    LcdDisplayBottomRow(23456789);
+
 
     while(1)
     {
 
-      // code = USS_startLowPowerUltrasonicCapture(&gUssSWConfig);
-      //  checkCode(code, USS_message_code_no_error);
-
-
-       // code = USS_runAlgorithms(&gUssSWConfig,&algResults);
-        //checkCode(code, USS_message_code_valid_results);
+      code = USS_startLowPowerUltrasonicCapture(&gUssSWConfig);
+       checkCode(code, USS_message_code_no_error);
+       LcdDisplayMiddleRow(code);
+       code = USS_runAlgorithmsFixedPoint(&gUssSWConfig,&algResultsFixedPoint);
+       LcdDisplayBottomRow(algResultsFixedPoint.iq44DeltaTOF);
+       LcdDisplayTopRow(code);
+      // code = USS_runAlgorithms(&gUssSWConfig,&algResults);
+       //checkCode(code, USS_message_code_valid_results);
 
 
 
@@ -203,6 +207,7 @@ void enableApplicationInterrupts(void){
 
 void checkCode(USS_message_code code, USS_message_code expectedCode)
 {
+    LcdDisplayTopRow(code);
     if(code != expectedCode)
     {
         // Trap code
