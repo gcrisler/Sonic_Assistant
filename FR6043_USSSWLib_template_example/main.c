@@ -48,6 +48,7 @@
 
 
 USS_Algorithms_Results algorithms_Results;
+Sonic_Results_fixed_point Sonic_Results;
 
 static void checkCode(USS_message_code code, USS_message_code expectedCode);
 static void handlePllUnlockEvent(void);
@@ -159,18 +160,17 @@ int main(void)
 
 
 
-    LcdDisplayMiddleRow(78);
-
-
     while(1)
     {
 
       code = USS_startLowPowerUltrasonicCapture(&gUssSWConfig);
        checkCode(code, USS_message_code_no_error);
-       LcdDisplayMiddleRow(code);
+
        code = USS_runAlgorithmsFixedPoint(&gUssSWConfig,&algResultsFixedPoint);
-       LcdDisplayBottomRow(algResultsFixedPoint.iq44DeltaTOF);
        LcdDisplayTopRow(code);
+       LcdDisplayBottomRow(algResultsFixedPoint.iq44DeltaTOF/2650);
+       LcdDisplayMiddleRow(algResultsFixedPoint.iq16VolumeFlowRate/1000);
+
       // code = USS_runAlgorithms(&gUssSWConfig,&algResults);
        //checkCode(code, USS_message_code_valid_results);
 
