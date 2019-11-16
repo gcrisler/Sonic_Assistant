@@ -5,7 +5,7 @@
  *      Author: gcrisler
  */
 
-include "algorithmsSonic.h";
+#include "algorithmsSonic.h"
 int sensor_pin = 0;
 
 int ema_a = 0.06;
@@ -19,12 +19,12 @@ void loop() {
   ema = EMA_function(ema_a, algorithms_Results.deltaTOF, ema);
   ema_ema = EMA_function(ema_a, ema, ema_ema);
 
-  Sonic_Results_fixed_point.Dema = 2*ema - ema_ema;
+  Sonic_Results.Dema = 2*ema - ema_ema;
 
 
 }
 
-int EMA_function(float alpha, int latest, int stored){
+int EMA_function(float alpha, long int latest, int stored){
   return round(alpha*latest) + round((1-alpha)*stored);
 }
 

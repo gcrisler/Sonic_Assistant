@@ -8,7 +8,11 @@
 #ifndef ALGORITHMSSONIC_H_
 #define ALGORITHMSSONIC_H_
 
-int EMA_function(float alpha, int latest, int stored);
+#include <msp430.h>
+
+#include <stdint.h>
+
+int EMA_function(float alpha, long int latest, int stored);
 
 typedef struct Sonic_Algorithms_Results_fixed_point_
 {

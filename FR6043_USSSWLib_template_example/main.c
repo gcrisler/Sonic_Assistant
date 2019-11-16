@@ -3,7 +3,7 @@
 #include "ussSwLib.h"
 #include "USS_userConfig.h"
 #include "lcd_display.h"
-
+#include "algorithmsSonic.h"
 
 /*******************************************************************************
  * Enables Signal gain calibration. It is recommmended to enable this feature
